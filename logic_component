@@ -1,0 +1,26 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00893278 .scope module, "logic_component" "logic_component" 2 2;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 1 "c"
+    .port_info 1 /INPUT 1 "a"
+    .port_info 2 /INPUT 1 "b"
+o02871874 .functor BUFZ 1, C4<z>; HiZ drive
+o0287188c .functor BUFZ 1, C4<z>; HiZ drive
+L_00894668 .functor AND 1, o02871874, o0287188c, C4<1>, C4<1>;
+L_008946b0 .functor NOT 1, L_00894668, C4<0>, C4<0>, C4<0>;
+v00893348_0 .net "a", 0 0, o02871874;  0 drivers
+v00895130_0 .net "b", 0 0, o0287188c;  0 drivers
+v00895188_0 .net "c", 0 0, L_008946b0;  1 drivers
+v00894610_0 .net "d", 0 0, L_00894668;  1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "logic_component.v";

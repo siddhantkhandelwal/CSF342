@@ -1,0 +1,68 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00e34918 .scope module, "testbench" "testbench" 2 2;
+ .timescale 0 0;
+v00e38310_0 .var "a", 0 0;
+v00e38368_0 .var "b", 0 0;
+v00e383c0_0 .net "f", 0 0, L_00e3daa8;  1 drivers
+v00e38418_0 .var "s", 0 0;
+S_00e331f0 .scope module, "mux_gate" "mux2to1_gate" 2 5, 3 1 0, S_00e34918;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a"
+    .port_info 1 /INPUT 1 "b"
+    .port_info 2 /INPUT 1 "s"
+    .port_info 3 /OUTPUT 1 "f"
+L_00e38470 .functor NOT 1, v00e38418_0, C4<0>, C4<0>, C4<0>;
+L_00e384b8 .functor AND 1, v00e38310_0, v00e38418_0, C4<1>, C4<1>;
+L_00e3dbc8 .functor AND 1, v00e38368_0, L_00e38470, C4<1>, C4<1>;
+L_00e3daa8 .functor OR 1, L_00e384b8, L_00e3dbc8, C4<0>, C4<0>;
+v02613800_0 .net "a", 0 0, v00e38310_0;  1 drivers
+v02613888_0 .net "b", 0 0, v00e38368_0;  1 drivers
+v00e349e8_0 .net "c", 0 0, L_00e384b8;  1 drivers
+v00e332c0_0 .net "d", 0 0, L_00e3dbc8;  1 drivers
+v00e33318_0 .net "e", 0 0, L_00e38470;  1 drivers
+v00e33370_0 .net "f", 0 0, L_00e3daa8;  alias, 1 drivers
+v00e382b8_0 .net "s", 0 0, v00e38418_0;  1 drivers
+    .scope S_00e34918;
+T_0 ;
+    %vpi_call 2 8 "$dumpfile", "filename.vcd" {0 0 0};
+    %vpi_call 2 9 "$dumpvars" {0 0 0};
+    %vpi_call 2 10 "$monitor", " ", $time, " a=%b, b=%b, s=%b f=%b", v00e38310_0, v00e38368_0, v00e38418_0, v00e383c0_0 {0 0 0};
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00e38310_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00e38368_0, 0, 1;
+    %delay 2, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00e38418_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00e38418_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00e38310_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00e38368_0, 0, 1;
+    %delay 15, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00e38418_0, 0, 1;
+    %delay 20, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00e38418_0, 0, 1;
+    %delay 100, 0;
+    %vpi_call 2 17 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_mux2to1_gate.v";
+    "./mux2to1_gate.v";

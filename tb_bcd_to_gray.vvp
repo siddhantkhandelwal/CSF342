@@ -1,0 +1,92 @@
+#! c:/iverilog-x86/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_001fe308 .scope module, "BCDtoGrayGate" "BCDtoGrayGate" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "b"
+    .port_info 1 /OUTPUT 4 "g"
+L_001f50a0 .functor OR 1, L_027d9b30, L_027d9ea0, C4<0>, C4<0>;
+L_001f50e8 .functor XOR 1, L_027d9c90, L_027d9d40, C4<0>, C4<0>;
+L_001f5130 .functor XOR 1, L_027d9ef8, L_027d9ce8, C4<0>, C4<0>;
+v001f9c90_0 .net *"_s10", 0 0, L_001f50e8;  1 drivers
+v001fee68_0 .net *"_s13", 0 0, L_027d9c90;  1 drivers
+v001feec0_0 .net *"_s15", 0 0, L_027d9d40;  1 drivers
+v001fef18_0 .net *"_s16", 0 0, L_001f5130;  1 drivers
+v001fef70_0 .net *"_s20", 0 0, L_027d9ef8;  1 drivers
+v027b0660_0 .net *"_s22", 0 0, L_027d9ce8;  1 drivers
+v027b06b8_0 .net *"_s3", 0 0, L_027b03f8;  1 drivers
+v027b0710_0 .net *"_s4", 0 0, L_001f50a0;  1 drivers
+v027b0768_0 .net *"_s7", 0 0, L_027d9b30;  1 drivers
+v027b0138_0 .net *"_s9", 0 0, L_027d9ea0;  1 drivers
+o027b40b4 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v027b02f0_0 .net "b", 3 0, o027b40b4;  0 drivers
+v027b07c0_0 .net "g", 3 0, L_027d9c38;  1 drivers
+L_027b03f8 .part o027b40b4, 3, 1;
+L_027d9b30 .part o027b40b4, 3, 1;
+L_027d9ea0 .part o027b40b4, 2, 1;
+L_027d9c90 .part o027b40b4, 2, 1;
+L_027d9d40 .part o027b40b4, 1, 1;
+L_027d9c38 .concat8 [ 1 1 1 1], L_001f5130, L_001f50e8, L_001f50a0, L_027b03f8;
+L_027d9ef8 .part o027b40b4, 1, 1;
+L_027d9ce8 .part o027b40b4, 0, 1;
+S_001fe3d8 .scope module, "testbench" "testbench" 3 2;
+ .timescale 0 0;
+v027b0608_0 .var "b", 3 0;
+v027b0450_0 .net "g", 3 0, L_027d9fa8;  1 drivers
+S_001f4f88 .scope module, "BCD_test_df" "BCDtoGrayDF" 3 5, 2 11 0, S_001fe3d8;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "b"
+    .port_info 1 /OUTPUT 4 "g"
+L_001f32c0 .functor XOR 1, L_027d9be0, L_027d9b88, C4<0>, C4<0>;
+L_027da108 .functor XOR 1, L_027d98c8, L_027d93f8, C4<0>, C4<0>;
+v027b0190_0 .net *"_s10", 0 0, L_027d9e48;  1 drivers
+v027b04a8_0 .net *"_s15", 0 0, L_027d9be0;  1 drivers
+v027b01e8_0 .net *"_s17", 0 0, L_027d9b88;  1 drivers
+v027b0818_0 .net *"_s18", 0 0, L_001f32c0;  1 drivers
+v027b0348_0 .net *"_s24", 0 0, L_027d98c8;  1 drivers
+v027b0240_0 .net *"_s26", 0 0, L_027d93f8;  1 drivers
+v027b0558_0 .net *"_s27", 0 0, L_027da108;  1 drivers
+v027b0500_0 .net *"_s3", 0 0, L_027d9d98;  1 drivers
+v027b05b0_0 .net *"_s7", 0 0, L_027d9df0;  1 drivers
+v027b03a0_0 .net *"_s9", 0 0, L_027d9f50;  1 drivers
+v027b0298_0 .net "b", 3 0, v027b0608_0;  1 drivers
+v027b00e0_0 .net "g", 3 0, L_027d9fa8;  alias, 1 drivers
+L_027d9d98 .part v027b0608_0, 3, 1;
+L_027d9df0 .part v027b0608_0, 3, 1;
+L_027d9f50 .part v027b0608_0, 2, 1;
+L_027d9e48 .arith/sum 1, L_027d9df0, L_027d9f50;
+L_027d9be0 .part v027b0608_0, 2, 1;
+L_027d9b88 .part v027b0608_0, 1, 1;
+L_027d9fa8 .concat8 [ 1 1 1 1], L_027da108, L_001f32c0, L_027d9e48, L_027d9d98;
+L_027d98c8 .part v027b0608_0, 1, 1;
+L_027d93f8 .part v027b0608_0, 0, 1;
+    .scope S_001fe3d8;
+T_0 ;
+    %vpi_call 3 8 "$monitor", " ", $time, " b=%4b, g=%4b", v027b0450_0, v027b0608_0 {0 0 0};
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v027b0608_0, 0, 4;
+    %delay 2, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v027b0608_0, 0, 4;
+    %delay 4, 0;
+    %pushi/vec4 2, 0, 4;
+    %store/vec4 v027b0608_0, 0, 4;
+    %delay 6, 0;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v027b0608_0, 0, 4;
+    %delay 100, 0;
+    %vpi_call 3 13 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./bcd_to_gray.v";
+    "tb_bcd_to_gray.v";

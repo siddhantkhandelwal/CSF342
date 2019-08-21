@@ -1,0 +1,46 @@
+$date
+	Wed Aug 21 08:55:54 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 1 ! f $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ s $end
+$scope module mux_beh $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 $ s $end
+$var reg 1 ! f $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x$
+1#
+0"
+1!
+$end
+#2
+0!
+1$
+#7
+1!
+0$
+#17
+0!
+0#
+1"
+#32
+1!
+1$
+#52
+0!
+0$
+#152
